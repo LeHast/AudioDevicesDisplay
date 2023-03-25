@@ -1,0 +1,15 @@
+This program is written in C++ and uses the Windows Core Audio API to enumerate all active audio input devices on a Windows system. It prints the friendly name of each device and prompts the user to select one of the devices by entering its number.
+
+Here’s a brief overview of what the program does:
+
+The CoInitializeEx function is called to initialize the COM library for use by the calling thread.
+An instance of the IMMDeviceEnumerator interface is created using the CoCreateInstance function.
+The EnumAudioEndpoints method of the IMMDeviceEnumerator interface is called to enumerate all active audio input devices (i.e., devices with the eCapture data flow and the DEVICE_STATE_ACTIVE state).
+The GetCount method of the IMMDeviceCollection interface is called to get the number of devices in the collection.
+If there are no devices in the collection, a message is printed to indicate that no audio input devices were found.
+Otherwise, a loop is used to iterate over each device in the collection.
+For each device, the Item method of the IMMDeviceCollection interface is called to get a pointer to the device.
+The OpenPropertyStore method of the IMMDevice interface is called to open the property store of the device.
+The GetValue method of the IPropertyStore interface is called to get the value of the PKEY_Device_FriendlyName property, which contains the friendly name of the device.
+The friendly name of the device is printed to the standard output stream.
+After all devices have been processed, the user is prompted to enter the number of the device they want to select.
